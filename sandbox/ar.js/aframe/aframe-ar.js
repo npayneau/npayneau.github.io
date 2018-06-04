@@ -7988,7 +7988,7 @@ ARjs.MarkersAreaUtils.createDefaultMultiMarkerFile = function(trackingBackend){
 	}
 	if( trackingBackend === 'artoolkit' ){
 		file.subMarkersControls[0].parameters.type = 'pattern'
-		file.subMarkersControls[0].parameters.patternUrl = absoluteBaseURL + 'examples/marker-training/examples/pattern-files/pattern-hiro.patt'
+		file.subMarkersControls[0].parameters.patternUrl = absoluteBaseURL + 'pattern-hiro.patt'
 	}else if( trackingBackend === 'aruco' ){
 		file.subMarkersControls[0].parameters.type = 'barcode'
 		file.subMarkersControls[0].parameters.barcodeValue = 1001
@@ -8020,27 +8020,27 @@ ARjs.MarkersAreaUtils.createDefaultMarkersControlsParameters = function(tracking
 		var markersControlsParameters = [
 			{
 				type : 'pattern',
-				patternUrl : absoluteBaseURL + 'examples/marker-training/examples/pattern-files/pattern-hiro.patt',
+				patternUrl : absoluteBaseURL + 'pattern-hiro.patt',
 			},
 			{
 				type : 'pattern',
-				patternUrl : absoluteBaseURL + 'examples/marker-training/examples/pattern-files/pattern-kanji.patt',
+				patternUrl : absoluteBaseURL + 'pattern-kanji.patt',
 			},
 			{
 				type : 'pattern',
-				patternUrl : absoluteBaseURL + 'examples/marker-training/examples/pattern-files/pattern-letterA.patt',
+				patternUrl : absoluteBaseURL + 'pattern-letterA.patt',
 			},
 			{
 				type : 'pattern',
-				patternUrl : absoluteBaseURL + 'examples/marker-training/examples/pattern-files/pattern-letterB.patt',
+				patternUrl : absoluteBaseURL + 'pattern-letterB.patt',
 			},
 			{
 				type : 'pattern',
-				patternUrl : absoluteBaseURL + 'examples/marker-training/examples/pattern-files/pattern-letterC.patt',
+				patternUrl : absoluteBaseURL + 'pattern-letterC.patt',
 			},
 			{
 				type : 'pattern',
-				patternUrl : absoluteBaseURL + 'examples/marker-training/examples/pattern-files/pattern-letterF.patt',
+				patternUrl : absoluteBaseURL + 'pattern-letterF.patt',
 			},
 		]		
 	}else if( trackingBackend === 'aruco' ){
@@ -8167,11 +8167,11 @@ ARjs.MarkersAreaUtils.buildMarkersAreaFileFromResolution = function(trackingBack
 		var absoluteBaseURL = link.href
 			
 		var layout2PatternUrl = {
-			'center' : convertRelativeUrlToAbsolute(absoluteBaseURL + 'examples/marker-training/examples/pattern-files/pattern-hiro.patt'),
-			'topleft' : convertRelativeUrlToAbsolute(absoluteBaseURL + 'examples/marker-training/examples/pattern-files/pattern-letterA.patt'),
-			'topright' : convertRelativeUrlToAbsolute(absoluteBaseURL + 'examples/marker-training/examples/pattern-files/pattern-letterB.patt'),
-			'bottomleft' : convertRelativeUrlToAbsolute(absoluteBaseURL + 'examples/marker-training/examples/pattern-files/pattern-letterC.patt'),
-			'bottomright' : convertRelativeUrlToAbsolute(absoluteBaseURL + 'examples/marker-training/examples/pattern-files/pattern-letterF.patt'),
+			'center' : convertRelativeUrlToAbsolute(absoluteBaseURL + 'pattern-hiro.patt'),
+			'topleft' : convertRelativeUrlToAbsolute(absoluteBaseURL + 'pattern-letterA.patt'),
+			'topright' : convertRelativeUrlToAbsolute(absoluteBaseURL + 'pattern-letterB.patt'),
+			'bottomleft' : convertRelativeUrlToAbsolute(absoluteBaseURL + 'pattern-letterC.patt'),
+			'bottomright' : convertRelativeUrlToAbsolute(absoluteBaseURL + 'pattern-letterF.patt'),
 		}
 		console.assert(layout2PatternUrl[layout] !== undefined )
 		parameters.type = 'pattern'
@@ -8275,11 +8275,11 @@ AFRAME.registerComponent('arjs-anchor', {
 
 			if( _this.data.preset === 'hiro' ){
 				markerParameters.type = 'pattern'
-				markerParameters.patternUrl = THREEx.ArToolkitContext.baseURL+'examples/marker-training/examples/pattern-files/pattern-hiro.patt'
+				markerParameters.patternUrl = THREEx.ArToolkitContext.baseURL+'pattern-hiro.patt'
 				markerParameters.markersAreaEnabled = false
 			}else if( _this.data.preset === 'kanji' ){
 				markerParameters.type = 'pattern'
-				markerParameters.patternUrl = THREEx.ArToolkitContext.baseURL+'examples/marker-training/examples/pattern-files/pattern-kanji.patt'
+				markerParameters.patternUrl = THREEx.ArToolkitContext.baseURL+'pattern-kanji.patt'
 				markerParameters.markersAreaEnabled = false
 			}else if( _this.data.preset === 'area' ){
 				markerParameters.type = 'barcode'

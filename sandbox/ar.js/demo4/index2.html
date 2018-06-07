@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!-- include aframe -->
+<script src="../aframe/aframe.min.js"></script>
+<!-- include aframe-ar.js -->
+<script src="../aframe/aframe-ar.js"></script>
+<script>ARjs.Context.baseURL = '../pattern/'</script>
+<body style=’margin : 0px; overflow: hidden;’>
+  	<a-scene antialias="true" embedded arjs='trackingMethod: best;'>
+      <a-marker preset='hiro'>
+        <!-- Adding an OBJ file to an AR Project-->
+        <a-gltf-model src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/1.0/Monster/glTF-Embedded/Monster.gltf" scale="0.1 0.1 0.1"></a-gltf-model>
+      </a-marker>
+		<a-camera-static/>
+  </a-scene>
+</body>

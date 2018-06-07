@@ -4,12 +4,15 @@
 <!-- include aframe-ar.js -->
 <script src="../aframe/aframe-ar.js"></script>
 <script>ARjs.Context.baseURL = '../pattern/'</script>
-<body style=’margin : 0px; overflow: hidden;’>
-  	<a-scene antialias="true" embedded arjs='trackingMethod: best;'>
-      <a-marker preset='hiro'>
-        <!-- Adding an OBJ file to an AR Project-->
-        <a-gltf-model src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/1.0/Monster/glTF-Embedded/Monster.gltf" scale="0.1 0.1 0.1"></a-gltf-model>
-      </a-marker>
-		<a-camera-static/>
-  </a-scene>
+<body style="margin : 0px; overflow: hidden;">
+  <a-scene antialias="true" embedded arjs="trackingMethod: best;">
+    <a-marker preset="hiro">
+      <!-- Adding an OBJ file to an AR Project-->
+      <a-entity  position='0 0 0' scale='0.1 0.1 0.1' obj-model='obj: url(./nico.obj);mtl: url(./obj.mtl)'>
+    <!--<a-animation attribute="rotation" to="0 360 0" dur="3000" easing='linear' repeat="indefinite"></a-animation>-->
+    <a-animation attribute="position" from="0 0 0" to="0 5 5" dur="3000" easing="linear" repeat="indefinite" direction="alternate"></a-animation>
+      </a-entity>
+    </a-marker>
+  <a-camera-static/>
+</a-scene>
 </body>

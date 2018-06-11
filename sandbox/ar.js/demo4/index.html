@@ -6,7 +6,7 @@
 <script>ARjs.Context.baseURL = '../pattern/'</script>
 <body style="margin : 0px; overflow: hidden;">
   <a-scene antialias="true" embedded arjs="trackingMethod: best;">
-    <a-marker preset="hiro">
+    <a-marker type="pattern" url="../pattern/pattern-thales.patt">
       <!-- Adding an OBJ file to an AR Project-->
       <a-entity  position='0 0 0' scale='0.1 0.1 0.1' obj-model='obj: url(./nico.obj);mtl: url(./obj.mtl)'>
     <!--<a-animation attribute="rotation" to="0 360 0" dur="3000" easing='linear' repeat="indefinite"></a-animation>-->

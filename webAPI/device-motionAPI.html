@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+
+    <h1>#TechAway Device Motion API</h1>
+
+    <span id="unsupported" class="api-support hidden">API non supportée</span>
+
+    <div id="content">
+        <div id="x-box" class="box">X: <span id="x-value"></span> m/s2 </div>
+        <div id="y-box">Y: <span id="y-value"></span> m/s2</div>
+        <div id="z-box">Z: <span id="z-value"></span> m/s2</div>
+        <div id="ygravity-box">YGravity: <span id="ygravity-value"></span></div>
+
+    </div>
+
+    <div id="back">
+        <div id="back-btn" class="box"><a href="./index.html">Retour au menu</a></div>
+    </div>
+
+    <script>
+        window.navigator = window.navigator || {};
+        if (window.DeviceMotionEvent) {
+            window.addEventListener("devicemotion", process, false);
+        } else {
+            document.getElementById('unsupported').classList.remove('hidden');
+        }
+
+        function process(event) {
+            document.getElementById('x-value').innerHTML = event.acceleration.x;
+            document.getElementById('y-value').innerHTML = event.acceleration.y;
+            document.getElementById('z-value').innerHTML = event.acceleration.z;
+            document.getElementById('ygravity-value') = event.accelerationIncludingGrativity.y;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+
+    <h1>#TechAway Device Light API</h1>
+
+    <span id="unsupported" class="api-support hidden">API non supportée</span>
+
+    <div id="content">
+        <div id="light-box" class="box">X: <span id="light-value">0</span></div>
+
+    </div>
+
+    <div id="back">
+        <div id="back-btn" class="box"><a href="./index.html">Retour au menu</a></div>
+    </div>
+
+    <script>
+        window.navigator = window.navigator || {};
+        if (window.DeviceMotionEvent) {
+            window.addEventListener("devicelight", process, false);
+        } else {
+            document.getElementById('unsupported').classList.remove('hidden');
+        }
+
+        function process(event) {
+            document.getElementById('light-value').innerHTML = Math.min(45, event.value);;
+        }
+    </script>
+</body>
+
+</html>

@@ -13,9 +13,9 @@
     <span id="unsupported" class="api-support hidden">API non supportée</span>
 
     <div id="content">
-        <div id="x-box" class="box">X: <span id="x-value"></span> m/s2 </div>
-        <div id="y-box">Y: <span id="y-value"></span> m/s2</div>
-        <div id="z-box">Z: <span id="z-value"></span> m/s2</div>
+        <div id="x-box" class="box">X: <span id="x-value">0</span> m/s2 </div>
+        <div id="y-box">Y: <span id="y-value">0</span> m/s2</div>
+        <div id="z-box">Z: <span id="z-value">0</span> m/s2</div>
         <div id="ygravity-box">YGravity: <span id="ygravity-value"></span></div>
 
     </div>
@@ -33,10 +33,14 @@
         }
 
         function process(event) {
-            document.getElementById('x-value').innerHTML = event.acceleration.x;
-            document.getElementById('y-value').innerHTML = event.acceleration.y;
-            document.getElementById('z-value').innerHTML = event.acceleration.z;
-            document.getElementById('ygravity-value') = event.accelerationIncludingGrativity.y;
+            if (event.acceleration.x > document.getElementById('x-value').value)
+                document.getElementById('x-value').innerHTML = event.acceleration.x;
+            if (event.acceleration.y > document.getElementById('y-value').value)
+                document.getElementById('y-value').innerHTML = event.acceleration.y;
+            if (event.acceleration.z > document.getElementById('z-value').value)
+                document.getElementById('z-value').innerHTML = event.acceleration.z;
+            if (event.accelerationIncludingGrativity.y > document.getElementById('ygravity-value').value)
+                document.getElementById('ygravity-value') = event.accelerationIncludingGrativity.y;
         }
     </script>
 </body>

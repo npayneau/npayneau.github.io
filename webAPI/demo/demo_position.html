@@ -34,7 +34,7 @@
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
             <br><br>
-            <h1 class="header center orange-text">Démo mouvement</h1>
+            <h1 class="header center orange-text">Démo position</h1>
         </div>
     </div>
     </br>
@@ -43,35 +43,26 @@
     <div class="container">
         <div class="section">
             <div class="row">
-                <div id="x-box" class="col s12 m4">
-                    <h4>
-                        X: <span id="x-value">0</span> m/s2
-                    </h4>
+                <div class="col s12 m4">
+                    <h5>
+                        Latitude: <span id="lat">0</span>
+                    </h5>
                 </div>
-                <div id="y-box" class="col s12 m4">
-                    <h4>
-                        Y: <span id="y-value">0</span> m/s2
-                    </h4>
-                </div>
-                <div id="z-box" class="col s12 m4">
-                    <h4>Z: <span id="z-value">0</span> m/s2
-                    </h4>
-                </div>
-                <div id="ygravity-box" class="col s12 m4">
-                    <h4>YGravity: <span id="ygravity-value">0</span> m/s2
-                    </h4>
+                <div class="col s12 m4">
+                    <h5>
+                        Longitude: <span id="long">0</span>
+                    </h5>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        if (window.DeviceMotionEvent) {
-            window.addEventListener("devicemotion", event => {
-                document.querySelector('#x-value').innerHTML = event.acceleration.x;
-                document.querySelector('#y-value').innerHTML = event.acceleration.y;
-                document.querySelector('#z-value').innerHTML = event.acceleration.z;
-                document.querySelector('#ygravity-value') = event.accelerationIncludingGrativity.y;
-            }, true);
+        if ('geolocation' in navigator) {
+            var watchID;
+            navigator.geolocation.getCurrentPosition((position) => {
+                document.querySelector('#lat').innerHTML = position.coords.latitude;
+                document.querySelector('#long').innerHTML = position.coords.longitude;
+            });
         } else {
             M.toast({
                 html: 'API non disponible'

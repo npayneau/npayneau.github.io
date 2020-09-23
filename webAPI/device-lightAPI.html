@@ -23,7 +23,7 @@
 
     <script>
         window.navigator = window.navigator || {};
-        if (window.DeviceMotionEvent) {
+        if (window.DeviceLightEvent) {
             window.addEventListener("devicelight", process, false);
         } else {
             document.getElementById('unsupported').classList.remove('hidden');

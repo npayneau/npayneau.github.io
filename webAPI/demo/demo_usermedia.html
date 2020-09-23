@@ -34,7 +34,7 @@
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
             <br><br>
-            <h1 class="header center orange-text">Démo mouvement</h1>
+            <h1 class="header center orange-text">Démo User Media</h1>
         </div>
     </div>
     </br>
@@ -43,41 +43,15 @@
     <div class="container">
         <div class="section">
             <div class="row">
-                <div id="x-box" class="col s12 m4">
-                    <h4>
-                        X: <span id="x-value">0</span> m/s2
-                    </h4>
-                </div>
-                <div id="y-box" class="col s12 m4">
-                    <h4>
-                        Y: <span id="y-value">0</span> m/s2
-                    </h4>
-                </div>
-                <div id="z-box" class="col s12 m4">
-                    <h4>Z: <span id="z-value">0</span> m/s2
-                    </h4>
-                </div>
-                <div id="ygravity-box" class="col s12 m4">
-                    <h4>YGravity: <span id="ygravity-value">0</span> m/s2
-                    </h4>
+                <div class="col s12 m4">
+                    <h5>
+                        TODO
+                    </h5>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        if (window.DeviceMotionEvent) {
-            window.addEventListener("devicemotion", event => {
-                document.querySelector('#x-value').innerHTML = parseFloat(event.acceleration.x).toFixed(2);
-                document.querySelector('#y-value').innerHTML = parseFloat(event.acceleration.y).toFixed(2);
-                document.querySelector('#z-value').innerHTML = parseFloat(event.acceleration.z).toFixed(2);
-                document.querySelector('#ygravity-value') =
-                    parseFloat(event.accelerationIncludingGrativity.y).toFixed(2);
-            }, true);
-        } else {
-            M.toast({
-                html: 'API non disponible'
-            });
-        }
     </script>
 </body>
 

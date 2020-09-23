@@ -66,9 +66,9 @@
         }
 
         function process(event) {
-            document.querySelector('#alpha-value').innerHTML = event.alpha;
-            document.querySelector('#beta-value').innerHTML = event.beta;
-            document.querySelector('#gamma-value').innerHTML = event.gamma;
+            document.querySelector('#alpha-value').innerHTML = parseFloat(event.alpha).toFixed(2);
+            document.querySelector('#beta-value').innerHTML = parseFloat(event.beta).toFixed(2);
+            document.querySelector('#gamma-value').innerHTML = parseFloat(event.gamma).toFixed(2);
         }
     </script>
 </body>

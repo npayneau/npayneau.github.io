@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/init.js"></script>
+    <script>
+        fetch('./nav.html')
+            .then(function (data) {
+                return data.text();
+            })
+            .then((content) => {
+                document.querySelector('#nav-mobile').innerHTML = content;
+            });
+    </script>
+</head>
+
+<body>
+    <nav id="demo-navbar" class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">#TechAway n°1</a>
+            <ul id="nav-mobile" class="sidenav">
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <br><br>
+            <h1 class="header center orange-text">Démo orientation</h1>
+        </div>
+    </div>
+    </br>
+    </br>
+    <!-- Code specifique à la démo-->
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div id="alpha-box" class="col s12 m4">
+                    <h4>Alpha: <span id="alpha-value"></span></h4>
+                </div>
+                <div id="beta-box" class="col s12 m4">
+                    <h4>Beta: <span id="beta-value"></span></h4>
+                </div>
+                <div id="gamma-box" class="col s12 m4">
+                    <h4>Gamma: <span id="gamma-value"></span></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener("deviceorientation", process, false);
+        } else {
+            M.toast({
+                html: 'API non disponible'
+            });
+        }
+
+        function process(event) {
+            document.querySelector('#alpha-value').innerHTML = event.alpha;
+            document.querySelector('#beta-value').innerHTML = event.beta;
+            document.querySelector('#gamma-value').innerHTML = event.gamma;
+        }
+    </script>
+</body>
+
+</html>

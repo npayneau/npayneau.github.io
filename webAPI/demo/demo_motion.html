@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/init.js"></script>
+    <script>
+        fetch('./nav.html')
+            .then(function (data) {
+                return data.text();
+            })
+            .then((content) => {
+                document.querySelector('#nav-mobile').innerHTML = content;
+            });
+    </script>
+</head>
+
+<body>
+    <nav id="demo-navbar" class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">#TechAway n°1</a>
+            <ul id="nav-mobile" class="sidenav">
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <br><br>
+            <h1 class="header center orange-text">Démo mouvement</h1>
+        </div>
+    </div>
+    </br>
+    </br>
+    <!-- Code specifique à la démo-->
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div id="x-box" class="col s12 m4">
+                    <h4>
+                        X: <span id="x-value">0</span> m/s2
+                    </h4>
+                </div>
+                <div id="y-box" class="col s12 m4">
+                    <h4>
+                        Y: <span id="y-value">0</span> m/s2
+                    </h4>
+                </div>
+                <div id="z-box" class="col s12 m4">
+                    <h4>Z: <span id="z-value">0</span> m/s2
+                    </h4>
+                </div>
+                <div id="ygravity-box" class="col s12 m4">
+                    <h4>YGravity: <span id="ygravity-value">0</span> m/s2
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        if (window.DeviceMotionEvent) {
+            window.addEventListener("devicemotion", process, false);
+        } else {
+            M.toast({
+                html: 'API non disponible'
+            });
+        }
+
+        function process(event) {
+            if (event.acceleration) {
+                if (event.acceleration.x > document.querySelector('#x-value').value)
+                    document.querySelector('#x-value').innerHTML = event.acceleration.x;
+                if (event.acceleration.y > document.querySelector('#y-value').value)
+                    document.querySelector('#y-value').innerHTML = event.acceleration.y;
+                if (event.acceleration.z > document.querySelector('#z-value').value)
+                    document.querySelector('#z-value').innerHTML = event.acceleration.z;
+                if (event.accelerationIncludingGrativity && (event.accelerationIncludingGrativity.y >
+                        document.querySelector('#ygravity-value').value))
+                    document.querySelector('#ygravity-value') = event.accelerationIncludingGrativity.y;
+            }
+        }
+    </script>
+</body>
+
+</html>

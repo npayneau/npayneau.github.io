@@ -66,25 +66,23 @@
     </div>
     <script>
         if (window.DeviceMotionEvent) {
-            window.addEventListener("devicemotion", process, false);
+            window.addEventListener("devicemotion", event => {
+                if (event.acceleration) {
+                    if (event.acceleration.x > document.querySelector('#x-value').value)
+                        document.querySelector('#x-value').innerHTML = event.acceleration.x;
+                    if (event.acceleration.y > document.querySelector('#y-value').value)
+                        document.querySelector('#y-value').innerHTML = event.acceleration.y;
+                    if (event.acceleration.z > document.querySelector('#z-value').value)
+                        document.querySelector('#z-value').innerHTML = event.acceleration.z;
+                    if (event.accelerationIncludingGrativity && (event.accelerationIncludingGrativity.y >
+                            document.querySelector('#ygravity-value').value))
+                        document.querySelector('#ygravity-value') = event.accelerationIncludingGrativity.y;
+                }
+            }, true);
         } else {
             M.toast({
                 html: 'API non disponible'
             });
-        }
-
-        function process(event) {
-            if (event.acceleration) {
-                if (event.acceleration.x > document.querySelector('#x-value').value)
-                    document.querySelector('#x-value').innerHTML = event.acceleration.x;
-                if (event.acceleration.y > document.querySelector('#y-value').value)
-                    document.querySelector('#y-value').innerHTML = event.acceleration.y;
-                if (event.acceleration.z > document.querySelector('#z-value').value)
-                    document.querySelector('#z-value').innerHTML = event.acceleration.z;
-                if (event.accelerationIncludingGrativity && (event.accelerationIncludingGrativity.y >
-                        document.querySelector('#ygravity-value').value))
-                    document.querySelector('#ygravity-value') = event.accelerationIncludingGrativity.y;
-            }
         }
     </script>
 </body>

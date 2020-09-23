@@ -23,12 +23,7 @@
 
     <script>
         window.navigator = window.navigator || {};
-        if (window.DeviceLightEvent) {
-            window.addEventListener("devicelight", process, false);
-        } else {
-            document.getElementById('unsupported').classList.remove('hidden');
-        }
-
+         window.addEventListener("devicelight", process, false);
         function process(event) {
             document.getElementById('light-value').innerHTML = Math.min(45, event.value);;
         }

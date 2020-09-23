@@ -23,10 +23,9 @@
 
     <script>
         window.navigator = window.navigator || {};
-         window.addEventListener("devicelight", process, false);
-        function process(event) {
+         window.addEventListener('devicelight', function(event) {
             document.getElementById('light-value').innerHTML = Math.min(45, event.value);;
-        }
+         });
     </script>
 </body>
 

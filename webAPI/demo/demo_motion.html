@@ -48,41 +48,54 @@
                         X: <span id="x-value">0</span> m/s2
                     </h4>
                 </div>
+                <div class="progress">
+                    <div class="determinate blue" style="width: 70%"></div>
+                </div>
                 <div id="y-box" class="col s12 m4">
                     <h4>
                         Y: <span id="y-value">0</span> m/s2
                     </h4>
                 </div>
+                <div class="progress">
+                    <div class="determinate green" style="width: 70%"></div>
+                </div>
                 <div id="z-box" class="col s12 m4">
                     <h4>Z: <span id="z-value">0</span> m/s2
                     </h4>
                 </div>
-                <div id="ygravity-box" class="col s12 m4">
-                    <h4>YGravity: <span id="ygravity-value">0</span> m/s2
-                    </h4>
+                <div class="progress">
+                    <div class="determinate orange" style="width: 70%"></div>
+                </div>
+                <div class="col s12 m4 center">
+                    <button id="btn-reset" class="waves-effect waves-light btn">Reset</button>
                 </div>
             </div>
         </div>
-    </div>
-    <script>
-        if (window.DeviceMotionEvent) {
-            window.addEventListener("devicemotion", event => {
-                if (event.acceleration.x > document.querySelector('#x-value').innerHTML)
-                    document.querySelector('#x-value').innerHTML = parseFloat(event.acceleration.x).toFixed(2);
-                if (event.acceleration.y > document.querySelector('#y-value').innerHTML)
-                    document.querySelector('#y-value').innerHTML = parseFloat(event.acceleration.y).toFixed(2);
-                if (event.acceleration.z > document.querySelector('#z-value').innerHTML)
-                    document.querySelector('#z-value').innerHTML = parseFloat(event.acceleration.z).toFixed(2);
+        <script>
+            if (window.DeviceMotionEvent) {
+                window.addEventListener("devicemotion", event => {
+                    if (event.acceleration.x > document.querySelector('#x-value').innerHTML)
+                        document.querySelector('#x-value').innerHTML = parseFloat(event.acceleration.x).toFixed(
+                            2);
+                    if (event.acceleration.y > document.querySelector('#y-value').innerHTML)
+                        document.querySelector('#y-value').innerHTML = parseFloat(event.acceleration.y).toFixed(
+                            2);
+                    if (event.acceleration.z > document.querySelector('#z-value').innerHTML)
+                        document.querySelector('#z-value').innerHTML = parseFloat(event.acceleration.z).toFixed(
+                            2);
 
-                document.querySelector('#ygravity-value') =
-                    parseFloat(event.accelerationIncludingGrativity.y).toFixed(2);
-            }, true);
-        } else {
-            M.toast({
-                html: 'API non disponible'
-            });
-        }
-    </script>
+                }, true);
+                document.querySelector('#btn-reset').addEventListener('click', function () {
+                    document.querySelector('#x-value').innerHTML = 0;
+                    document.querySelector('#y-value').innerHTML = 0;
+                    document.querySelector('#z-value').innerHTML = 0;
+                });
+            } else {
+                M.toast({
+                    html: 'API non disponible'
+                });
+            }
+        </script>
 </body>
 
 </html>

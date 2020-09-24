@@ -18,7 +18,7 @@
                 return data.text();
             })
             .then((content) => {
-                document.querySelector('#nav-mobile').innerHTML = content;
+                $('#nav-mobile').innerHTML = content;
             });
     </script>
 </head>
@@ -43,28 +43,28 @@
     <div class="container">
         <div class="section">
             <div class="row">
-                <div id="x-box" class="col s12 m4">
+                <div class="col s12 m4">
                     <h4>
                         X: <span id="x-value">0</span> m/s2
                     </h4>
                 </div>
                 <div class="progress">
-                    <div class="determinate blue" style="width: 70%"></div>
+                    <div id="x-pg" class="determinate blue" style="width: 70%"></div>
                 </div>
-                <div id="y-box" class="col s12 m4">
+                <div class="col s12 m4">
                     <h4>
                         Y: <span id="y-value">0</span> m/s2
                     </h4>
                 </div>
                 <div class="progress">
-                    <div class="determinate green" style="width: 70%"></div>
+                    <div id="y-pg" class="determinate green" style="width: 70%"></div>
                 </div>
-                <div id="z-box" class="col s12 m4">
+                <div class="col s12 m4">
                     <h4>Z: <span id="z-value">0</span> m/s2
                     </h4>
                 </div>
                 <div class="progress">
-                    <div class="determinate orange" style="width: 70%"></div>
+                    <div id="z-pg" class="determinate orange" style="width: 70%"></div>
                 </div>
                 <div class="col s12 m4 center">
                     <button id="btn-reset" class="waves-effect waves-light btn">Reset</button>
@@ -74,21 +74,35 @@
         <script>
             if (window.DeviceMotionEvent) {
                 window.addEventListener("devicemotion", event => {
-                    if (event.acceleration.x > document.querySelector('#x-value').innerHTML)
-                        document.querySelector('#x-value').innerHTML = parseFloat(event.acceleration.x).toFixed(
+                    if (event.acceleration.x > $('#x-value').innerHTML) {
+                        $('#x-value').innerHTML = parseFloat(event.acceleration.x).toFixed(
                             2);
-                    if (event.acceleration.y > document.querySelector('#y-value').innerHTML)
-                        document.querySelector('#y-value').innerHTML = parseFloat(event.acceleration.y).toFixed(
+                        $('#x-pg').css('width', parseFloat(event.acceleration.x).toFixed(
+                            2) + '%');
+                    }
+
+                    if (event.acceleration.y > $('#y-value').innerHTML) {
+                        $('#y-value').innerHTML = parseFloat(event.acceleration.y).toFixed(
                             2);
-                    if (event.acceleration.z > document.querySelector('#z-value').innerHTML)
-                        document.querySelector('#z-value').innerHTML = parseFloat(event.acceleration.z).toFixed(
+                        $('#y-pg').css('width', parseFloat(event.acceleration.y).toFixed(
+                            2) + '%');
+                    }
+
+                    if (event.acceleration.z > $('#z-value').innerHTML) {
+                        $('#z-value').innerHTML = parseFloat(event.acceleration.z).toFixed(
                             2);
+                        $('#z-pg').css('width', parseFloat(event.acceleration.z).toFixed(
+                            2) + '%');
+                    }
 
                 }, true);
-                document.querySelector('#btn-reset').addEventListener('click', function () {
-                    document.querySelector('#x-value').innerHTML = 0;
-                    document.querySelector('#y-value').innerHTML = 0;
-                    document.querySelector('#z-value').innerHTML = 0;
+                $('#btn-reset').addEventListener('click', function () {
+                    $('#x-value').innerHTML = 0;
+                    $('#x-pg').css('width', '1%');
+                    $('#y-value').innerHTML = 0;
+                    $('#y-pg').css('width', '1%');
+                    $('#z-value').innerHTML = 0;
+                    $('#z-pg').css('width', '1%');
                 });
             } else {
                 M.toast({

@@ -45,13 +45,34 @@
             <div class="row">
                 <div class="col s12 m4">
                     <h5>
-                        TODO
+                        Valeur: <span id="dp-value">0</span>
+                    </h5>
+                </div>
+                <div class="col s12 m4">
+                    <h5>
+                        Min: <span id="dp-max">0</span>
+                    </h5>
+                </div>
+                <div class="col s12 m4">
+                    <h5>
+                        Max: <span id="dp-min">0</span>
                     </h5>
                 </div>
             </div>
         </div>
     </div>
     <script>
+        if (!('ondeviceproximity' in window)) {
+            M.toast({
+                html: 'API non disponible'
+            });
+        } else {
+            window.addEventListener('deviceproximity', function (event) {
+                document.querySelector('#dp-value').innerHTML = event.value;
+                document.querySelector('#dp-max').innerHTML = event.max;
+                document.querySelector('#dp-min').innerHTML = event.min;
+            });
+        }
     </script>
 </body>
 

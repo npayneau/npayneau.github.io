@@ -57,9 +57,17 @@
         if (window.DeviceLightEvent) {
             window.addEventListener("devicelight", process, false);
         } else {
-            M.toast({
-                html: 'API non disponible'
-            });
+            if ('AmbientLightSensor' in window) {
+                const sensor = new AmbientLightSensor();
+                sensor.onreading = () => {
+                    document.querySelector('#light-value').innerHTML = event.value + " lux";
+                };
+                sensor.start();
+            } else {
+                M.toast({
+                    html: 'API non disponible'
+                });
+            }
         }
 
         function process(event) {

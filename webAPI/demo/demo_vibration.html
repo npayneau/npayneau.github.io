@@ -47,6 +47,7 @@
         <button id="btn-stop" class="waves-effect waves-light btn">Stop</button>
     </div>
     <script>
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
         if (navigator.vibrate === undefined) {
             M.toast({
                 html: 'API non disponible'

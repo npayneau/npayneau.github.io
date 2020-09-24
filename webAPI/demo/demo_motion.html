@@ -77,32 +77,31 @@
                     if (event.acceleration.x > document.querySelector('#x-value').innerHTML) {
                         document.querySelector('#x-value').innerHTML = parseFloat(event.acceleration.x).toFixed(
                             2);
-                        document.querySelector('#x-pg').css('width', parseFloat(event.acceleration.x).toFixed(
-                            2) + "%");
+                        document.querySelector('#x-pg').style.width = parseFloat(event.acceleration.x).toFixed(
+                            2) + "%";
                     }
 
                     if (event.acceleration.y > document.querySelector('#y-value').innerHTML) {
                         document.querySelector('#y-value').innerHTML = parseFloat(event.acceleration.y).toFixed(
                             2);
-                        document.querySelector('#y-pg').css('width', parseFloat(event.acceleration.y).toFixed(
-                            2) + "%");
+                        document.querySelector('#y-pg').style.width = parseFloat(event.acceleration.y).toFixed(
+                            2) + "%";
                     }
 
                     if (event.acceleration.z > document.querySelector('#z-value').innerHTML) {
                         document.querySelector('#z-value').innerHTML = parseFloat(event.acceleration.z).toFixed(
                             2);
-                        document.querySelector('#z-pg').css('width', parseFloat(event.acceleration.z).toFixed(
-                            2) + "%");
+                        document.querySelector('#z-pg').style.width = parseFloat(event.acceleration.z).toFixed(
+                            2) + "%";
                     }
-
                 }, true);
                 document.querySelector('#btn-reset').addEventListener('click', function () {
                     document.querySelector('#x-value').innerHTML = 0;
-                    document.querySelector('#x-pg').attr("width", "1%");
+                    document.querySelector('#x-pg').style.width = "1%";
                     document.querySelector('#y-value').innerHTML = 0;
-                    document.querySelector('#y-pg').css("width", "1%");
+                    document.querySelector('#y-pg').style.width = "1%";
                     document.querySelector('#z-value').innerHTML = 0;
-                    document.querySelector('#z-pg').css("width", "1%");
+                    document.querySelector('#z-pg').style.width = "1%";
                 });
             } else {
                 M.toast({

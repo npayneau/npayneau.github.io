@@ -42,7 +42,7 @@
     <div class="container">
         <div class="section">
             <div class="row">
-                <button id="btn-once" class="waves-effect waves-light btn">Scan</button>
+                <button id="btn-bluetooth" class="waves-effect waves-light btn">Scan</button>
             </div>
             <div class="row">
                 <textarea id="console" class="materialize-textarea"></textarea>
@@ -51,18 +51,25 @@
     </div>
     <script>
         function updateConsole(text) {
-            document.querySelector('#console').value = document.querySelector('#console').value + text;
+            document.querySelector('#console').value = document.querySelector('#console').value + '\n' +
+                text;
             M.textareaAutoResize(document.querySelector('#console'));
         }
-        document.querySelector('#btn-once').addEventListener('click', function () {
+
+        function padHex(value) {
+            return ('00' + value.toString(16).toUpperCase()).slice(-2);
+        }
+
+        document.querySelector('#btn-bluetooth').addEventListener('click', function () {
             document.querySelector('#console').value = '';
             M.textareaAutoResize(document.querySelector('#console'));
             navigator.bluetooth.requestDevice({
                 // filters: [...] <- Prefer filters to save energy & show relevant devices. 
-                acceptAllDevices: true
+                acceptAllDevices: true,
+                optionalServices: ['device_information']
             }).then(device => {
                 // Human-readable name of the device.
-                updateConsole("Connexion à " + device.name);
+                updateConsole("Connexion à " + device.name + "...");
 
                 // Attempts to connect to remote GATT Server.
                 return device.gatt.connect();
@@ -74,12 +81,78 @@
                 let queue = Promise.resolve();
                 let decoder = new TextDecoder('utf-8');
                 characteristics.forEach(characteristic => {
-                    queue.then(_ => characteristic.readValue()).then(value => updateConsole(
-                        decoder.decode(value)));
+                    switch (characteristic.uuid) {
+
+                        case BluetoothUUID.getCharacteristic('manufacturer_name_string'):
+                            queue = queue.then(_ => characteristic.readValue()).then(value => {
+                                updateConsole('> Manufacturer Name String: ' + decoder
+                                    .decode(
+                                        value));
+                            });
+                            break;
+
+                        case BluetoothUUID.getCharacteristic('model_number_string'):
+                            queue = queue.then(_ => characteristic.readValue()).then(value => {
+                                updateConsole('> Model Number String: ' + decoder
+                                    .decode(value));
+                            });
+                            break;
+
+                        case BluetoothUUID.getCharacteristic('hardware_revision_string'):
+                            queue = queue.then(_ => characteristic.readValue()).then(value => {
+                                updateConsole('> Hardware Revision String: ' + decoder
+                                    .decode(
+                                        value));
+                            });
+                            break;
+
+                        case BluetoothUUID.getCharacteristic('firmware_revision_string'):
+                            queue = queue.then(_ => characteristic.readValue()).then(value => {
+                                updateConsole('> Firmware Revision String: ' + decoder
+                                    .decode(
+                                        value));
+                            });
+                            break;
+
+                        case BluetoothUUID.getCharacteristic('software_revision_string'):
+                            queue = queue.then(_ => characteristic.readValue()).then(value => {
+                                updateConsole('> Software Revision String: ' + decoder
+                                    .decode(
+                                        value));
+                            });
+                            break;
+
+                        case BluetoothUUID.getCharacteristic('system_id'):
+                            queue = queue.then(_ => characteristic.readValue()).then(value => {
+                                updateConsole('> System ID: ');
+                                updateConsole(' > Manufacturer Identifier: ' +
+                                    padHex(value.getUint8(4)) + padHex(value
+                                        .getUint8(3)) +
+                                    padHex(value.getUint8(2)) + padHex(value
+                                        .getUint8(1)) +
+                                    padHex(value.getUint8(0)));
+                                updateConsole(
+                                    ' > Organizationally Unique Identifier: ' +
+                                    padHex(value.getUint8(7)) + padHex(value
+                                        .getUint8(6)) +
+                                    padHex(value.getUint8(5)));
+                            });
+                            break;
+
+                        case BluetoothUUID.getCharacteristic(
+                            'ieee_11073-20601_regulatory_certification_data_list'):
+                            queue = queue.then(_ => characteristic.readValue()).then(value => {
+                                updateConsole(
+                                    '> IEEE 11073-20601 Regulatory Certification Data List: ' +
+                                    decoder.decode(value));
+                            });
+                            break;
+
+                        default:
+                            updateConsole('> Unknown Characteristic: ' + characteristic.uuid);
+                    }
                 }).catch(error => {});
                 return queue;
-            }).catch(error => {
-                updateConsole('Argh! ' + error);
             });
 
         });

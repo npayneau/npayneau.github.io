@@ -42,15 +42,47 @@
     <div class="container">
         <div class="section">
             <div class="row">
-                <div class="col s12 m4">
-                    <h5>
-                        TODO
-                    </h5>
-                </div>
+                <button id="btn-once" class="waves-effect waves-light btn">Scan</button>
+            </div>
+            <div class="row">
+                <textarea id="console" class="materialize-textarea"></textarea>
             </div>
         </div>
     </div>
     <script>
+        function updateConsole(text) {
+            document.querySelector('#console').value = document.querySelector('#console').value + text;
+            M.textareaAutoResize(document.querySelector('#console'));
+        }
+        document.querySelector('#btn-once').addEventListener('click', function () {
+            document.querySelector('#console').value = '';
+            M.textareaAutoResize(document.querySelector('#console'));
+            navigator.bluetooth.requestDevice({
+                // filters: [...] <- Prefer filters to save energy & show relevant devices. 
+                acceptAllDevices: true
+            }).then(device => {
+                // Human-readable name of the device.
+                updateConsole("Connexion à " + device.name);
+
+                // Attempts to connect to remote GATT Server.
+                return device.gatt.connect();
+            }).then(server => {
+                return server.getPrimaryService('device_information');
+            }).then(service => {
+                return service.getCharacteristics();
+            }).then(characteristics => {
+                let queue = Promise.resolve();
+                let decoder = new TextDecoder('utf-8');
+                characteristics.forEach(characteristic => {
+                    queue.then(_ => characteristic.readValue()).then(value => updateConsole(
+                        decoder.decode(value)));
+                }).catch(error => {});
+                return queue;
+            }).catch(error => {
+                updateConsole('Argh! ' + error);
+            });
+
+        });
     </script>
 </body>
 

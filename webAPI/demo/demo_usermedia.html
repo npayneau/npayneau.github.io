@@ -121,7 +121,7 @@
                 canvas.getContext('2d').drawImage(video, 0, 0);
                 // Other browsers will fall back to image/png
                 img.src = canvas.toDataURL('image/webp');
-                img.className = filters[filterIndex - 1 % filters.length];
+                img.className = filters[(filterIndex - 1) % filters.length];
             };
 
             cssFiltersButton.onclick = function () {

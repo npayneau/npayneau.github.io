@@ -37,14 +37,20 @@
             <h1 class="header center orange-text">Démo vibration </h1>
         </div>
     </div>
-    </br>
-    </br>
-
-    <!-- Code specifique à la démo-->
-    <div class="buttons-wrapper">
-        <button id="btn-once" class="waves-effect waves-light btn">Vibrer une fois</button>
-        <button id="btn-thrice" class="waves-effect waves-light btn">Vibrer 3 fois</button>
-        <button id="btn-stop" class="waves-effect waves-light btn">Stop</button>
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s4 m4">
+                    <button id="btn-once" class="waves-effect waves-light btn">1 fois</button>
+                </div>
+                <div class="col s4 m4">
+                    <button id="btn-thrice" class="waves-effect waves-light btn">3 fois</button>
+                </div>
+                <div class="col s4 m4">
+                    <button id="btn-stop" class="waves-effect waves-light btn">Stop</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;

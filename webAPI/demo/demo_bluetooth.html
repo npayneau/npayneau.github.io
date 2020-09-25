@@ -42,6 +42,11 @@
     <div class="container">
         <div class="section">
             <div class="row">
+                <div id="available-panel" class="card-panel teal lighten-2">Navigateur non compatible avec l'API web
+                    bluetooth
+                </div>
+            </div>
+            <div class="row">
                 <button id="btn-bluetooth" class="waves-effect waves-light btn">Scan</button>
             </div>
             <div class="row">
@@ -50,6 +55,10 @@
         </div>
     </div>
     <script>
+        navigator.bluetooth.getAvailability().then(isAvailable => {
+            document.querySelector('#available-panel').hidden = isAvailable;
+        });
+
         function updateConsole(text) {
             document.querySelector('#console').value = document.querySelector('#console').value + '\n' +
                 text;

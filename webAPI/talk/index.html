@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>reveal.js – The HTML Presentation Framework</title>
+
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Hakim El Hattab">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section> <img data-src="./images/Thales.png" alt="reveal.js logo"
+					 style="height: 180px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+				<h1>#TechAway n°1</h1>
+				<h3>Et si on s'amusait avec les web API</h3>
+				<p>
+					<small>Proposer par <a href="https://nicolas-payneau.com">Nicolas Payneau</a> </small>
+				</p>
+			</section>
+			<section>
+				<section>
+					<h2>Qui suis-je?</h2>
+					<p>(Nicolas Payneau le jour)</p>
+					<div class="r-hstack">
+						<div style="margin-right: 1em;">
+							<ul>
+								<li>Architecte Logiciel</li>
+								<li>Lead Dev</li>
+								<li>Software craftman <img style="margin:0" width="10%" height="10%"
+										 data-src="./images/rocks.png">
+							</ul>
+						</div>
+						<div><img class="r-frame" style="background: rgba(255,255,255,0.1);"
+								 data-src="./images/nicolas.payneau.jpg"></div>
+					</div>
+				</section>
+				<section>
+					<h2>Qui suis-je?</h2>
+					<p>(Nicolas Payneau la nuit)</p>
+					<div class="r-hstack">
+						<div style="margin-right: 3em;">
+							<ul>
+								<li>Technophile</li>
+								<li>Code lovers</li>
+								<li>Crypto lovers</li>
+								<li>...</li>
+								<li>Insomniac</li>
+							</ul>
+						</div>
+						<div><img class="r-frame" style="background: rgba(255,255,255,0.1);"
+								 data-src="./images/nicolas.payneau-night.jpg"></div>
+					</div>
+				</section>
+			</section>
+			<section>
+				<h2 style="color:red">Disclaimer</h2>
+				<p>Tout ce qui suit existe depuis plus de 5 ans et sera une dose de rappel pour certains
+					et peut être une découverte pour d'autres ;-)</p>
+			</section>
+			<section>
+				<h2>Le monde des API web se divise en 3 types d'API</h2>
+				<div class="r-hstack">
+					<div style="margin-right: 1em;">
+						<ul>
+							<li>Device APIs</li>
+							<li>Communication APIs</li>
+							<li>Data managements APIs</li>
+						</ul>
+					</div>
+
+					<aside class="notes">
+						1. Cet ensemble d'API permet d'accéder à diverses fonctionnalités matérielles disponibles pour
+						les
+						pages Web et les
+						applications
+						2. Ces API permettent aux pages Web et aux applications de communiquer avec d'autres pages ou
+						appareils.
+						3. Les données utilisateur peuvent être stockées et gérées à l'aide de cet ensemble d'API
+					</aside>
+				</div>
+			</section>
+			<section>
+				<h2>The question</h2>
+				<p>Puis-je créer une application web qui utilise tous les capteurs de mon téléphone? Quelles sont les
+					limitations?</p>
+			</section>
+			<section>
+				<section>
+					<h2>Dose de rappel sur le W3C</h2>
+					<ul>
+						<li>World Wide Web Consortium</li>
+						<li>Existe depuis 1994</li>
+						<li>Développer des standards pour le web</li>
+						<li>Equipe fixe + des membres d’entreprises partenaires</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Processus 2018 du W3C</h2>
+					<img data-src="./images/w3c.png">
+				</section>
+			</section>
+			<section>
+				<h2>Tu es prêt?</h2>
+				<div><img src="https://media.giphy.com/media/CjmvTCZf2U3p09Cn0h/giphy.gif">
+				</div>
+			</section>
+
+			<!-- VIBRATION -->
+			<section>
+				<section>
+					<h2>Le vibreur</h2>
+					<img width="40%" height="40%" data-src="./images/vibration.png">
+				</section>
+				<section>
+					<h2>Les caractéristiques</h2>
+					<ul>
+						<li>Un seul entier, décrivant le nombre de millisecondes à vibrer</li>
+						<li>Tableau d'entiers décrivant un modèle de vibrations</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Exemple de code</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|2|7-17|9|12|15"><script type="text/template">
+					        window.navigator = window.navigator || {};
+					        if (navigator.vibrate === undefined) {
+					        	document.getElementById('unsupported').classList.remove('hidden');
+					        	['btn-once', 'btn-thrice', 'btn-stop'].forEach(function (elementId) {
+					        		document.getElementById(elementId).setAttribute('disabled', 'disabled');
+					        	});
+					        } else {
+					        	document.getElementById('btn-once').addEventListener('click', function () {
+					        		navigator.vibrate(1000);
+					        	});
+					        	document.getElementById('btn-thrice').addEventListener('click', function () {
+					        		navigator.vibrate([1000, 500, 1000, 500, 2000]);
+					        	});
+					        	document.getElementById('btn-stop').addEventListener('click', function () {
+					        		navigator.vibrate(0);
+					        	});
+					        }
+					</script></code></pre>
+				</section>
+				<section>
+					<h2>La compatibilité</h2>
+					<br>
+					<img data-src="./images/vibration_compatibility.jpg">
+					<img data-src="./images/rec_reco.jpg" style="position:absolute;top:40;right:0;">
+					<aside class="notes">
+						Standard du w3c (En recommendation) dernière publication 18 October 2016
+					</aside>
+				</section>
+			</section>
+
+			<!-- LUMINOSITE -->
+			<section>
+				<section>
+					<h2>Le capteur de luminosité</h2>
+					<img style="filter: invert(100%);" width="40%" height="40%" data-src="./images/brightness.png">
+				</section>
+				<section>
+					<h2>Les caractéristiques</h2>
+					<ul>
+						<li>Renvoi une valeur comprise entre 0 et 5000</li>
+						<li>Se mesure en lux</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Exemple de code</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|1|3"><script type="text/template">
+						window.addEventListener('devicelight', function(event) {
+							var body = document.querySelector('body');
+							if (event.value < 50) { 
+									body.classList.add('darklight'); 
+									body.classList.remove('brightlight');
+							} else {
+								body.classList.add('brightlight'); body.classList.remove('darklight');
+							} 
+						});
+					</script></code></pre>
+				</section>
+				<section>
+					<h2>La compatibilité</h2>
+					<br>
+					<img data-src="./images/light_compatibility.jpg">
+					<img data-src="./images/CR.jpg" style="position:absolute;top:40;right:0;">
+					<p>Depuis la version 60 de Firefox il faut activer device.sensors.ambientLight.enabled dans la
+						configuration de Firefox </p>
+					<aside class="notes">
+						Candidate Recommendationd du w3c, dernière publication 7 Mars 2019
+						Possible attaque d'exfiltration de données via ce capteur
+						Exemple: liens visité, QRCode
+					</aside>
+				</section>
+			</section>
+
+			<!-- ORIENTATION -->
+			<section>
+				<section>
+					<h2>Le capteur d'orientation</h2>
+					<img width="40%" height="40%" data-src="./images/orientation.png">
+				</section>
+				<section data-background-color="#ffff5f">
+					<h2>Axes: Alpha (Z), Beta (X), Gamma (Y)</h2>
+					<img data-src="./images/orientation-details.png">
+					<aside class="notes">
+						On parle bien de rotation autour d'un axe X,Y,Z.
+					</aside>
+				</section>
+				<section>
+					<h2>Représente la rotation de l'appareil sur un axe</h2>
+					<ul>
+						<li>Alpha(Z) entre 0° et 360°</li>
+						<li>Beta(X) entre -180° à 180°</li>
+						<li>Gamma(Y) entre -90° à 90°</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Exemple de code</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|9|2-4"><script type="text/template">
+					function handleOrientation(event) {
+						var alpha = event.alpha;
+						var beta = event.beta;
+						var gamma = event.gamma;
+
+						// Do stuff with the new orientation data
+					}
+
+					window.addEventListener('deviceorientation', handleOrientation);
+					</script></code></pre>
+
+					<aside class="notes">
+						On parle bien de rotation autour d'un axe X,Y,Z.
+						Attention ne retourne pas les mêmes coordonnées entre les navigateurs.
+					</aside>
+
+				</section>
+				<section>
+					<h2>La compatibilité</h2>
+					<br>
+					<img data-src="./images/orientation_compatibility.jpg">
+					<img data-src="./images/draft.jpg" style="position:absolute;top:40;right:0;">
+					<aside class="notes">En draft avec une dernière publication le 16 April 2019</aside>
+
+				</section>
+			</section>
+
+			<!-- MOUVEMENT -->
+			<section>
+				<section>
+					<h2>L'accéléromètre</h2>
+					<img width="40%" height="40%" data-src="./images/motion.png">
+				</section>
+				<section>
+					<h2>Les caractéristiques</h2>
+					<ul>
+						<li>Envoyé quand il y a un changement d’accélération</li>
+						<li>Possibilité de prendre en charge la gravité</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Exemple de code</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|12|2-7"><script type="text/template">
+						function handleMotion(event) {
+							var x = event.acceleration.x, 
+							y = event.acceleration.y, 
+							z = event.acceleration.z, 
+							xg = event.accelerationIncludingGravity.x,
+							yg = event.accelerationIncludingGravity.y,
+							zg = event.accelerationIncludingGravity.z;
+
+							// Do stuff with the new motion data
+						}
+
+						window.addEventListener('devicemotion', handleMotion);
+					</script></code></pre>
+
+					<aside class="notes">
+						Retourne accélération en mètres par seconde au carré (m/s²)
+						acceleration : L'accélération calculée par l'appareil en enlevant la gravité.
+						accelerationIncludingGravity : La valeur de l'accélération brute, retournée par l'accéléromètre.
+						Avec accelerationIncludingGravity : {0,0,9.81} ci 9.81 correspond à la valeur de la pesanteur en
+						gravité terrestre
+					</aside>
+
+				</section>
+				<section>
+					<h2>La compatibilité</h2>
+					<br>
+					<img data-src="./images/motion_compatibility.jpg">
+					<img data-src="./images/draft.jpg" style="position:absolute;top:40;right:0;">
+					<aside class="notes">Fait partie de la spec orientation, en draft avec une dernière publication le
+						16 April 2019</aside>
+				</section>
+			</section>
+
+			<!-- POSITION -->
+			<section>
+				<section>
+					<h2>La géolocatlisation</h2>
+					<img width="40%" height="40%" data-src="./images/position.png">
+				</section>
+				<section>
+					<h2>Les caractéristiques</h2>
+					<ul>
+						<li>Sous permissions</li>
+						<li>Permet d'avoir la localisation</li>
+						<li>Handler sur le changement de position</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Exemple de code</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|1|2|5|6"><script type="text/template">
+						if('geolocation' in navigator) {
+							navigator.geolocation.getCurrentPosition((position) => {
+								doSomething(position.coords.latitude, position.coords.longitude);
+							});
+							navigator.geolocation.watchPosition((position) => {
+								doSomething(position.coords.latitude, position.coords.longitude);
+							});
+						} else {
+							/* geolocation IS NOT available */
+						}
+					</script></code></pre>
+				</section>
+				<section>
+					<h2>La compatibilité</h2>
+					<br>
+					<img data-src="./images/geolocalisation_compatibility.jpg">
+					<img data-src="./images/rec_reco.jpg" style="position:absolute;top:40;right:0;">
+					<aside class="notes">
+						Standard du w3c (En recommendation) dernière publication 8 November 2016
+						Nom d'API différente pour opéra et firefox 'Position'
+					</aside>
+				</section>
+			</section>
+
+			<!-- USER MEDIA -->
+			<section>
+				<section>
+					<h2>User Media API</h2>
+					<img width="40%" height="40%" data-src="./images/vibration.png">
+				</section>
+				<section>
+					<h2>Les caractéristiques</h2>
+					<ul>
+						<li>Récupération du flux vidéo</li>
+						<li>Définition de la qualité du flux vidéo</li>
+						<li>Récupération du flux audio</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Exemple de code</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|1-10|11-13|18-22"><script type="text/template">
+						const constraints = {
+							video: {
+								width: {
+									exact: 1280
+								},
+								height: {
+									exact: 720
+								}
+							}
+						};
+						navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+							video.srcObject = stream;
+						});
+ 						window.AudioContext = window.AudioContext ||
+							window.webkitAudioContext;
+
+						document.querySelector('#voice-btn').onclick = function () {
+							const context = new AudioContext();
+							navigator.mediaDevices.getUserMedia({
+								audio: true
+							}).then((stream) => {
+								const microphone = context.createMediaStreamSource(stream);
+								const filter = context.createBiquadFilter();
+								// microphone -> filter -> destination
+								microphone.connect(filter);
+								filter.connect(context.destination);
+							});
+						};
+
+					</script></code></pre>
+				</section>
+				<section>
+					<h2>La compatibilité</h2>
+					<br>
+					<img data-src="./images/usermedia_compatibility.jpg">
+					<img data-src="./images/CR.jpg" style="position:absolute;top:40;right:0;">
+					<aside class="notes">
+						Candidate Recommendationd du w3c, dernière publication 24 Sept 2020
+						Nom d'API différente pour opéra et firefox 'Position'
+					</aside>
+				</section>
+			</section>
+
+			<!-- NFC -->
+			<section>
+				<section>
+					<h2>Le lecteur NFC</h2>
+					<img width="40%" height="40%" data-src="./images/nfc.png">
+				</section>
+				<section>
+					<h2>Les caractéristiques</h2>
+					<ul>
+						<li>TODO</li>
+						<li>TODO</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Exemple de code</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|1|2"><script type="text/template">
+					TOTO
+					TOTO
+					TOTO
+					</script></code></pre>
+				</section>
+				<section>
+					<h2>La compatibilité</h2>
+					<br>
+					<img data-src="./images/vibration_compatibility.jpg">
+				</section>
+			</section>
+
+			<!-- PROXIMITE -->
+			<section>
+				<section>
+					<h2>Le capteur de proximité</h2>
+					<img width="40%" height="40%" data-src="./images/proximity.jpg">
+				</section>
+				<section>
+					<h2>Les caractéristiques</h2>
+					<ul>
+						<li>Retourne la proximité mesurée de l'appareil distant (distance en centimètres)</li>
+						<li>Minimum et maximal de la valeur détectée</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Exemple de code</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|1|2|3"><script type="text/template">
+						if('ondeviceproximity' in window) {
+							window.addEventListener('deviceproximity', function (event) {
+								 console.log("value: " + event.value, "max: " + event.max, "min: " + event.min);
+							});
+						} else {
+							/* proximity IS NOT available */
+						}
+					</script></code></pre>
+				</section>
+				<section>
+					<h2>La compatibilité</h2>
+					<br>
+					<img data-src="./images/proximity_compatibility.jpg">
+					<img data-src="./images/draft.jpg" style="position:absolute;top:40;right:0;">
+
+					<p>Depuis la version 60 de Firefox il faut activer device.sensors.proximity.enabled dans la
+						configuration de Firefox </p>
+					<aside class="notes">En draft avec une dernière publication le 5 mars 2019</aside>
+				</section>
+			</section>
+
+			<!-- BLUETOOTH -->
+			<section>
+				<section>
+					<h2>Le lecteur Bluetooth</h2>
+					<img width="40%" height="40%" data-src="./images/bluetooth.png">
+				</section>
+				<section>
+					<h2>Les caractéristiques</h2>
+					<ul>
+						<li>GATT: Generic Attribute Profile</li>
+						<li>Serveur>Service>caractéristique>Valeur</li>
+						<li>Chaque caractéristique peut être lue / écrite / passée en mode notification</li>
+					</ul>
+					<aside class="notes">
+						GATT signifie Generic Attribute Profile . Pour comprendre ce qu'est le GATT, nous devons d'abord
+						comprendre le
+						cadre sous-jacent du GATT: le protocole d'attributs (TTA). Le GATT n'entre en jeu qu'une fois
+						qu'une connexion a
+						été établie entre deux appareils BLE.
+						Chaque serveur propose un ou plusieurs services. Certains de ces services font officiellement
+						partie de la norme, mais vous pouvez également définir les vôtres. Dans le cas du
+						cardiofréquencemètre, il existe un
+						service officiel défini dans la spécification. Dans le cas de l'ampoule, il n'y en a pas, et à
+						peu près tous les
+						fabricants essaient de réinventer la roue. Chaque service a une ou plusieurs caractéristiques.
+						Chaque
+						caractéristique a une valeur qui peut être lue ou écrite. Pour l'instant, il serait préférable
+						de le considérer comme un tableau
+						d'objets, chaque objet ayant des propriétés qui ont des valeurs. Contrairement aux propriétés
+						des objets, les
+						services et les caractéristiques ne sont pas identifiés par une chaîne. Chaque service et
+						caractéristique a un
+						UUID unique qui peut avoir une longueur de 16 ou 128 bits. Officiellement, l'UUID 16 bits est
+						réservé aux normes
+						officielles, mais pratiquement personne ne suit cette règle. Enfin, chaque valeur est un tableau
+						d'octets.</aside>
+				</section>
+				<section>
+					<h2>Résumé du GATT</h2>
+					<img width="40%" height="40%" data-src="./images/gatt.png">
+				</section>
+				<section>
+					<h2>Exemple de code</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|4|10-11|13|15|19|22-26|24|28-34|35"><script type="text/template">
+						document.querySelector('#btn-bluetooth').addEventListener('click', function () {
+						document.querySelector('#console').value = '';
+						M.textareaAutoResize(document.querySelector('#console'));
+						navigator.bluetooth.requestDevice({
+							// filters: [...] <- Prefer filters to save energy & show relevant devices. acceptAllDevices: true, optionalServices:
+							['device_information'] }).then(device=> {
+								// Human-readable name of the device.
+								updateConsole("Connexion à " + device.name + "...");
+
+								// Attempts to connect to remote GATT Server.
+								return device.gatt.connect();
+							}).then(server => {
+								return server.getPrimaryService('device_information');
+							}).then(service => {
+								return service.getCharacteristics();
+							}).then(characteristics => {
+								let queue = Promise.resolve();
+								let decoder = new TextDecoder('utf-8');
+								characteristics.forEach(characteristic => {
+								switch (characteristic.uuid) {
+
+								case BluetoothUUID.getCharacteristic('manufacturer_name_string'):
+									queue = queue.then(_ => characteristic.readValue()).then(value => {
+									updateConsole('> Manufacturer Name String: ' + decoder.decode(value));
+									});
+								break;
+
+								case BluetoothUUID.getCharacteristic('model_number_string'):
+									queue = queue.then(_ => characteristic.readValue()).then(value => {
+									updateConsole('> Model Number String: ' + decoder
+									.decode(value));
+									});
+								break;
+
+								case BluetoothUUID.getCharacteristic('hardware_revision_string'):
+									queue = queue.then(_ => characteristic.readValue()).then(value => {
+									updateConsole('> Hardware Revision String: ' + decoder
+									.decode(
+									value));
+									});
+								break;
+
+								case BluetoothUUID.getCharacteristic('firmware_revision_string'):
+									queue = queue.then(_ => characteristic.readValue()).then(value => {
+									updateConsole('> Firmware Revision String: ' + decoder
+									.decode(
+									value));
+									});
+								break;
+
+								case BluetoothUUID.getCharacteristic('software_revision_string'):
+									queue = queue.then(_ => characteristic.readValue()).then(value => {
+										updateConsole('> Software Revision String: ' + decoder
+										.decode(
+										value));
+									});
+								break;
+
+								case BluetoothUUID.getCharacteristic('system_id'):
+									queue = queue.then(_ => characteristic.readValue()).then(value => {
+										updateConsole('> System ID: ');
+										updateConsole(' > Manufacturer Identifier: ' +
+										padHex(value.getUint8(4)) + padHex(value
+										.getUint8(3)) +
+										padHex(value.getUint8(2)) + padHex(value
+										.getUint8(1)) +
+										padHex(value.getUint8(0)));
+										updateConsole(
+										' > Organizationally Unique Identifier: ' +
+										padHex(value.getUint8(7)) + padHex(value
+										.getUint8(6)) +
+										padHex(value.getUint8(5)));
+									});
+								break;
+
+								case BluetoothUUID.getCharacteristic(
+								'ieee_11073-20601_regulatory_certification_data_list'):
+									queue = queue.then(_ => characteristic.readValue()).then(value => {
+									updateConsole(
+									'> IEEE 11073-20601 Regulatory Certification Data List: ' +
+									decoder.decode(value));
+									});
+								break;
+
+								default:
+									updateConsole('> Unknown Characteristic: ' + characteristic.uuid);
+								}
+							}).catch(error => {});
+								return queue;
+							});
+					</script></code></pre>
+				</section>
+				<section>
+					<h2>La compatibilité</h2>
+					<br>
+					<img data-src="./images/bluetooth_compatibility.jpg">
+					<img data-src="./images/draft_community.jpg" style="position:absolute;top:40;right:0;">
+				</section>
+				<section>
+					<h2>W3C Community Group</h2>
+					<br>
+					<img data-src="./images/w3c_cg.jpg">
+					<aside class="notes">En draft community les rapports des communautés et des groupes commerciaux ne
+						sont pas encore des standards du W3C. Certains groupes peuvent souhaiter que leur travail se
+						poursuive sur la
+						piste des recommandations du W3C, le processus par lequel le W3C crée des groupes de travail
+						pour
+						développer des normes Web. Il y a plusieurs avantages à faire avancer les travaux vers la voie
+						des recommandations,
+						notamment la construction d'un consensus mondial plus fort; des examens systématiques de la
+						sécurité, de la
+						confidentialité,
+						de l'accessibilité et de l'internationalisation; un engagement fort du W3C à poursuivre une
+						large
+						interopérabilité, et des ressources supplémentaires du W3C dédiées à l'avancement des travaux.
+					</aside>
+				</section>
+			</section>
+
+			<!-- SENSOR API -->
+			<section>
+				<section data->
+					<h2>Sensor API</h2>
+					<img src="https://media.giphy.com/media/yXIeZ0EH2hORG/giphy.gif">
+				</section>
+				<section>
+					<h2>Sensor API</h2>
+					<ul>
+						<li>API proposé par le W3C
+						</li>
+						<li>API actuellement en « Candidate recommendation » depuis le 12 décembre 2019
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Que propose l'API</h2>
+					<ul>
+						<li>Accelerometer</li>
+						<li>Gyroscope</li>
+						<li>LinearAccelerationSensor</li>
+						<li>AbsoluteOrientationSensor</li>
+						<li>RelativeOrientationSensor</li>
+						<li>AmbientLightSensor</li>
+						<li>Magnetometer</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Exemple de code</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|1|2|3-5|7|9|"><script type="text/template">
+							if(AmbientLightSensor in window) {
+								sensor = new AmbientLightSensor();
+								sensor.addEventListener('reading', function(e) {
+									document.getElementById('status').innerHTML = e.target.illuminance;
+								});
+								//Start the sensor
+								sensor.start();
+								//Stop the sensor
+								sensor.stop();
+							}
+					</script></code></pre>
+				</section>
+				<section>
+					<h2>La compatibilité</h2>
+					<br>
+					<img data-src="./images/sensorapi_compatibility.jpg">
+					<img data-src="./images/CR.jpg" style="position:absolute;top:40;right:0;">
+					<aside class="notes">
+						Candidate Recommendationd du w3c, dernière publication 12 December 2019
+					</aside>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Et après, on pourrait parler plus longuement de :</h2>
+					<ul>
+						<li>Notification</li>
+						<li>Gestion offline</li>
+						<li>API WebXR</li>
+						<li>API Gamepad</li>
+					</ul>
+				</section>
+			</section>
+
+			<section data-background="./images/questions.jpg">
+				<h2>Mais bon vous devez avoir faim ;-)</h2>
+				<br />
+				<p>Place aux questions / réponses</p>
+			</section>
+		</div>
+
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			center: true,
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
+		});
+	</script>
+
+</body>
+
+</html>

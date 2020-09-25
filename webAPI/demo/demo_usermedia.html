@@ -53,8 +53,8 @@
             </div>
             <div class="row">
                 <div id="screenshot" class="col s12 m4">
-                    <video class="responsive-video" autoplay></video>
-                    <img src="">
+                    <video style="max-width: 100%;" class="responsive-video" autoplay></video>
+                    <img style="max-width: 100%;" src="">
                     <canvas style="display:none;"></canvas>
                 </div>
             </div>
@@ -71,13 +71,13 @@
                 navigator.mediaDevices.getUserMedia);
         }
 
-        const vgaConstraints = {
+        const constraints = {
             video: {
                 width: {
-                    exact: 300
+                    exact: 1280
                 },
                 height: {
-                    exact: 200
+                    exact: 720
                 }
             }
         };
@@ -108,7 +108,7 @@
             const canvas = document.createElement('canvas');
 
             captureVideoButton.onclick = function () {
-                navigator.mediaDevices.getUserMedia(vgaConstraints).
+                navigator.mediaDevices.getUserMedia(constraints).
                 then(stream => {
                     screenshotButton.disabled = false;
                     video.srcObject = stream;
@@ -130,8 +130,6 @@
 
             window.AudioContext = window.AudioContext ||
                 window.webkitAudioContext;
-
-
 
             document.querySelector('#voice-btn').onclick = function () {
                 const context = new AudioContext();

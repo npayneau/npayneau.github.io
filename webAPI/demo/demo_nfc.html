@@ -55,10 +55,11 @@
         if ('NDEFReader' in window) {
             document.querySelector('#btn-bluetooth').addEventListener('click', function () {
                 /* ... Scan NDEF Tags */
+                 document.querySelector('#console').value = "Début de scan";
                 const reader = new NDEFReader();
-                let ignoreRead = false;
                 await reader.scan();
                 reader.onreading = event => {
+                    document.querySelector('#console').value = document.querySelector('#console').value +" Lecture";
                     document.querySelector('#console').value = document.querySelector('#console').value +
                         '\n' +
                         event.message;

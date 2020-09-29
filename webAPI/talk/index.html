@@ -33,7 +33,7 @@
 				<h1>#TechAway n°1</h1>
 				<h3>Et si on s'amusait avec les web API</h3>
 				<p>
-					<small>Proposer par <a href="https://nicolas-payneau.com">Nicolas Payneau</a> </small>
+					<small>Proposé par <a href="https://nicolas-payneau.com">Nicolas Payneau</a> </small>
 				</p>
 			</section>
 			<section>
@@ -101,7 +101,7 @@
 			<section>
 				<h2>The question</h2>
 				<p>Puis-je créer une application web qui utilise tous les capteurs de mon téléphone? Quelles sont les
-					limitations?</p>
+					limites?</p>
 			</section>
 			<section>
 				<section>
@@ -413,34 +413,6 @@
 				</section>
 			</section>
 
-			<!-- NFC -->
-			<section>
-				<section>
-					<h2>Le lecteur NFC</h2>
-					<img width="40%" height="40%" data-src="./images/nfc.png">
-				</section>
-				<section>
-					<h2>Les caractéristiques</h2>
-					<ul>
-						<li>TODO</li>
-						<li>TODO</li>
-					</ul>
-				</section>
-				<section>
-					<h2>Exemple de code</h2>
-					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|1|2"><script type="text/template">
-					TOTO
-					TOTO
-					TOTO
-					</script></code></pre>
-				</section>
-				<section>
-					<h2>La compatibilité</h2>
-					<br>
-					<img data-src="./images/vibration_compatibility.jpg">
-				</section>
-			</section>
-
 			<!-- PROXIMITE -->
 			<section>
 				<section>
@@ -451,7 +423,7 @@
 					<h2>Les caractéristiques</h2>
 					<ul>
 						<li>Retourne la proximité mesurée de l'appareil distant (distance en centimètres)</li>
-						<li>Minimum et maximal de la valeur détectée</li>
+						<li>Minimum et maximum de la valeur détectée</li>
 					</ul>
 				</section>
 				<section>
@@ -650,7 +622,7 @@
 				<section>
 					<h2>Sensor API</h2>
 					<ul>
-						<li>API proposé par le W3C
+						<li>API proposée par le W3C
 						</li>
 						<li>API actuellement en « Candidate recommendation » depuis le 12 décembre 2019
 						</li>
@@ -667,6 +639,9 @@
 						<li>AmbientLightSensor</li>
 						<li>Magnetometer</li>
 					</ul>
+					<aside class="notes">
+						Contrairement au autre on peut donné la vitesse de lecture pour récupérer la données
+					</aside>
 				</section>
 				<section>
 					<h2>Exemple de code</h2>
@@ -690,17 +665,71 @@
 					<img data-src="./images/CR.jpg" style="position:absolute;top:40;right:0;">
 					<aside class="notes">
 						Candidate Recommendationd du w3c, dernière publication 12 December 2019
+						Compatible chrome
 					</aside>
 				</section>
 			</section>
 			<section>
 				<section>
 					<h2>Et après, on pourrait parler plus longuement de :</h2>
+					<p>Web assembly / Notification / Gyroscope / WebWorker / WebuSB / WebRTC / FileReading / WebXR /
+						Gamepad / Speech Recognition / WebSocket / Payment / ...
+					</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Et en dessert prenez-vous un petit FUGU?</h2>
+					<img width="40%" height="40%" data-src="./images/fugu.jpg">
+				</section>
+				<section>
+					<h2>Le projet FUGU</h2>
 					<ul>
-						<li>Notification</li>
-						<li>Gestion offline</li>
-						<li>API WebXR</li>
-						<li>API Gamepad</li>
+						<li>Inclu dans le projet Chromium</li>
+						<li>Ouvert à tous les contributeurs et organisations</li>
+						<li>Principaux contributeur Microsoft, Intel, Samsung et Google (entre autres)</li>
+						<li>Expérimental donc ne fonctionne pas partout</li>
+					</ul>
+					<aside class="notes">
+						L'idée du projet est que tout le monde peut contribué et participer à l'élaboration d'une API.
+						L'idée est d'impliquer les gens et d'intéragir
+						Poisson que si il est bien préparé il sera excelent par contre si mal préparé on peut en
+						mourrir.
+						L'analoge sur les API c'est la même chose. Faire des choses moins bien comme drainer notre
+						baterie
+					</aside>
+				</section>
+				<section>
+					<h2>Le projet FUGU</h2>
+					<img data-src="./images/fugu-process.jpg">
+					<aside class="notes">
+						Création d'un process avec itération de feedback:
+						1. Identification d'un besoin
+						2. Ecriture d'un semblant de spec (Explainer)
+						3. Demande de feedback c'est la qu'intervient les contributeurs (nous, Intel et autre)
+						4. Création de la spec W3C pour spécifier proprement
+
+						Mise en place de l'origin trial, moyen d'accéder au API expérimental sans rajouter des flags.
+						On peut tester en prod avec un public grace à la souscription de token Origin Trial pour l'API
+						que vous voulez tester
+						Ajout d'un header meta en haut de votre page html.
+					</aside>
+				</section>
+				<section>
+					<h2>API intéréssantes proposées</h2>
+					<p>Web NFC / Native FileSystem API / Wake lock API / Contact Picker / SMS Receiver API / Web Serial
+						API / Shape Detection API</p>
+				</section>
+				<section>
+					<h2>Si vous souhaitez en savoir plus</h2>
+					<ul>
+						<li><a
+							   href="https://docs.google.com/spreadsheets/d/1de0ZYDOcafNXXwMcg4EZhT0346QM-QFvZfoD8ZffHeA/edit#gid=557099940">Fugu
+								API Tracker</a>
+						</li>
+						<li><a href="https://github.com/w3ctag/w3ctag.github.io/blob/master/explainers.md">Readme pour
+								faire un "explainer"</a></li>
+						<li><a href="http://goo.gle/capabilities">Liste des possibilités chrome</a></li>
 					</ul>
 				</section>
 			</section>

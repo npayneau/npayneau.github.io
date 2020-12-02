@@ -1,9 +1,46 @@
+  function update_view(){ 
+    var gallery = document.querySelector('#gallery');
+    var getVal = function (elem, style) { return parseInt(window.getComputedStyle(elem).getPropertyValue(style)); };
+    var getHeight = function (item) { return item.querySelector('.content').getBoundingClientRect().height; };
+    var resizeAll = function () {
+        console.log("resize");
+        var altura = getVal(gallery, 'grid-auto-rows');
+        var gap = getVal(gallery, 'grid-row-gap');
+        gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+            var el = item;
+            el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
+        });
+    };
+    gallery.querySelectorAll('img').forEach(function (item) {
+        item.classList.add('byebye');
+        if (item.complete) {
+            item.classList.remove('byebye');
+        }
+        else {
+            item.addEventListener('load', function () {
+                var altura = getVal(gallery, 'grid-auto-rows');
+                var gap = getVal(gallery, 'grid-row-gap');
+                var gitem = item.parentElement.parentElement;
+                gitem.style.gridRowEnd = "span " + Math.ceil((getHeight(gitem) + gap) / (altura + gap));
+                item.classList.remove('byebye');
+            });
+        }
+    });
+    window.addEventListener('resize', resizeAll);
+    gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+      if(window.screen.width>603){
+        item.addEventListener('click', function () {        
+            item.classList.toggle('full');        
+        });
+      }
+    });
+    } 
 jQuery(function($) {
-  (function(name) {
-    var container = $('#pagination-portfolio');
+  (function() {
+     var container = $('#pagination-portfolio');
     var pageSizeCalculated = 4;
     if(window.screen.width>603){
-      pageSizeCalculated = 6;
+      pageSizeCalculated = 20;
     }
     container.pagination({
       dataSource: {
@@ -22,16 +59,20 @@ jQuery(function($) {
       pageSize: pageSizeCalculated,
       className: "navigation posts-navigation wow fadeInUp" ,
       callback: function(response, pagination) {
-        var dataHtml = '<ul class="grid">';
+        var dataHtml = ' <div class="gallery" id="gallery">';
 
         $.each(response, function (index, item) {
-          dataHtml += '<li class="wow fdeInUp"><figure> <img src="img/full_img/' + item + '" alt="Screenshot 01"></figure></li>';
-        });
+          dataHtml += '<div class="gallery-item"><div class="content"><img src="img/full_img/' + item + '" alt=""></div></div>';
+          });
 
-        dataHtml += '</ul>';
+        dataHtml += '</div>';
 
-        container.prev().prev().html(dataHtml);
+        container.prev().html(dataHtml);
+        update_view();
+        window.dispatchEvent(new Event('resize'));
       }
-    })
+    });
+
   })();
+  
 })

@@ -35,6 +35,11 @@
       }
     });
     } 
+
+function scroll_to_anchor(anchor_id){
+  var tag = $(anchor_id);
+    $('html,body').animate({scrollTop: tag.offset().top},'slow');
+}
 jQuery(function($) {
   (function() {
      var container = $('#pagination-portfolio');
@@ -70,6 +75,10 @@ jQuery(function($) {
         container.prev().html(dataHtml);
         update_view();
         window.dispatchEvent(new Event('resize'));
+      },
+      afterPageOnClick : function(){
+        scroll_to_anchor('#our-work-block');
+            
       }
     });
 

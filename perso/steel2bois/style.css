@@ -180,6 +180,7 @@ a.navbar-brand:hover span {
 	font-size: 14px;
 	font-weight: 600;
 	letter-spacing: 1px;
+	cursor: pointer;
 }
 
 #top-menu.navbar-default .navbar-nav > li > a:hover{color:#615f5f; transition:all 0.5s;}
@@ -4481,7 +4482,7 @@ ul.about-features li i {
 
 
 #nav-top li{display:block;}
-#nav-top li a{display:block;}
+#nav-top li a{display:block}
 
 
 #nav-icon {

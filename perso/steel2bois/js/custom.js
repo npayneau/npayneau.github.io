@@ -25,7 +25,7 @@ jQuery(function($) {
         var dataHtml = '<ul class="grid">';
 
         $.each(response, function (index, item) {
-          dataHtml += '<li class="wow fdeInUp"><figure> <img src="img/full/' + item + '" alt="Screenshot 01"></figure></li>';
+          dataHtml += '<li class="wow fdeInUp"><figure> <img src="img/full_img/' + item + '" alt="Screenshot 01"></figure></li>';
         });
 
         dataHtml += '</ul>';

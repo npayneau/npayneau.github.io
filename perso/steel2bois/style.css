@@ -2899,9 +2899,7 @@ ul.about-features li:hover i {
 	margin-top: 60px;
 }
 
-#process-block .process-content {
-	padding: 5em 3em;
-}
+
 #process-block .process-content h6 {
 	font-size: 42px;
 	color: #3c434d;
@@ -4667,21 +4665,14 @@ time.updated{
 
 @media (min-width:768px) {
 	img.iconnavbar{
-		height: 75px;
+		height: 50px;
 	}
 	#nav-icon{
-		margin-top: 30px;
+		margin-top: 20px;
 	}
 	#nav-top{
-		margin-top: 15px;
-		height: 60px;
-	}
-	#process-block .process-img img {
-		width: 100%;
-		object-fit: cover;
-		overflow: hidden;
-		margin:0 auto;
-		min-height: 400px;
+		margin-top: 5px;
+		height: 40px;
 	}
 }
 

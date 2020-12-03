@@ -4287,6 +4287,30 @@ nav.bottom-nav ul li a {
 	-webkit-transition: all 300ms ease-in-out;
 }
 
+#home-social{
+	position: absolute;
+    bottom: 1em;
+    right: 2em;
+}
+#home-social .social-link {
+	text-align: center;
+}
+#home-social .social-link li {
+	display: inline-block;
+	list-style: none;
+}
+#home-social .social-link li a {
+	background-color: transparent;
+	padding: 0;
+	color: white;
+	font-size: 20px;
+}
+#home-social .social-link li a:hover {
+	color: #966F33;
+	transition: all 300ms ease-in-out;
+	-webkit-transition: all 300ms ease-in-out;
+}
+
 
 
 #top-menu .social-link {
@@ -4294,6 +4318,7 @@ nav.bottom-nav ul li a {
 	display:none;
 }
 #top-menu .social-link li {
+
 	display: inline-block;
 	list-style: none;
 	padding: 10px 15px;

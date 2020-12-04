@@ -43,7 +43,7 @@
         <a id="nav-icon"> <span></span> <span></span> <span></span> </a>
 
         <ul id="nav-top" class="nav navbar-nav navbar-right">
-          <li><a onclick="scroll_to_anchor('#home-banner')" class="page-scroll">Home</a></li>
+          <li><a onclick="scroll_to_anchor('#home-banner')" class="page-scroll">Accueil</a></li>
           <li><a onclick="scroll_to_anchor('#process-block')" class="page-scroll">Fonctionnement</a></li>
           <li><a onclick="scroll_to_anchor('#our-work-block')" class="page-scroll">Créations</a></li>
           <li><a onclick="scroll_to_anchor('#testimonials-block')" class="page-scroll">Avis</a></li>
@@ -57,16 +57,19 @@
 
   <section id="home-banner" style="background-image: url(img/home3.jpg);">
     <div class="content">
-      <div class="container" data-wow-duration="1s"> <span class="wow fadeIn">Bienvenue dans l'univers</span>
+      <div class="container" data-wow-duration="1s"> <span class="wow fadeIn">Votre créateur de mobilier
+          sur-mesure</span>
         <h1 class="wow fadeInUp">Steel de <span>bois</span></h1>
       </div>
     </div>
-    <div class="arrow bounce"> <i class="fa fa-arrow-down fa-2x"></i> </div>
+    <div id="home-arrow" class="arrow bounce"> <a onclick="scroll_to_anchor('#about-us-block')"><i
+           class="fa fa-arrow-down fa-2x"></i></a>
+    </div>
     <div id="home-social">
       <ul class="social-link">
         <li class="wow fadeInRight"><a href="https://twitter.com/SteeldeBois"><i class="fab fa-twitter"></i></a></li>
         <li data-wow-delay="0.5s" class="wow fadeInRight"><a
-             href="https://b-m.facebook.com/Steel-de-bois-603157150068626/?ref=page_internal&mt_nav=0"><i
+             href="https://www.facebook.com/Steel-de-bois-603157150068626/?ref=page_internal&mt_nav=0"><i
                class="fab fa-facebook"></i></a></li>
         <li data-wow-delay="1s" class="wow fadeInRight"><a href="https://www.instagram.com/steeldebois/?hl=fr"><i
                class="fab fa-instagram"></i></a></li>
@@ -84,7 +87,7 @@
               <div><img class="img-round" src="img/profil.jpg"></div>
             </div>
             <div class="col-md-10">
-              <p>Après mes études en métalurgie et quelques années d'expériences dans ce domaine, j'ai décidé de vivre
+              <p>Après mes études en métallurgie et quelques années d'expériences dans ce domaine, j'ai décidé de vivre
                 de ma passion pour les matières nobles en créant Steel de bois.
                 Mon but est de voir la satisfaction de mes clients au travers de leurs yeux émerveillés lorsque je livre
                 leur pièce unique réalisée sur demande.</p>
@@ -100,13 +103,13 @@
             <p>La base de la pièce à créer est basée sur une écoute et la bonne compréhension de votre besoin</p>
           </li>
           <li><i class="fa fa-bullseye"></i>
-            <h5>Plusieurs essences de bois</h5>
-            <p>Chêne, teck, érable, merisier, boulot et bien d'autres, m'émerveillent tous les jours sur mes différentes
-              créations</p>
+            <h5>Du bois local</h5>
+            <p>Je travail avec des entreprises locales (Scieries) et avec du bois des vallées d'Anjou</p>
           </li>
           <li><i class="fa fa-toolbox"></i>
             <h5>Plusieurs matériaux</h5>
-            <p>Acier, béton, bois, résine, cuivre, aluminium, les créations n'ont pas de limites à part la physique!</p>
+            <p>Acier, béton, bois, résine, cuivre, aluminium, les créations n'ont pas de limites à part la physique !
+            </p>
           </li>
           <li><i class="fa fa-pencil-ruler"></i>
             <h5>Variété de projets</h5>
@@ -137,50 +140,59 @@
         </div>
         <ul class="nav nav-tabs">
           <li class="active"><a href="#concept" data-toggle="tab"><i class="fa fa-comments"></i>
-              <h5>01. Le premier entretien</h5>
+              <h5 class="visible-xs">Etape 1</h5>
+              <h5 class="hidden-xs">01. Le premier entretien</h5>
             </a>
           </li>
           <li><a href="#prototype" data-toggle="tab"><i class="fa fa-drafting-compass"></i>
-              <h5>02. Le prototypage</h5>
+              <h5 class="visible-xs">Etape 2</h5>
+              <h5 class="hidden-xs">02. Le prototypage</h5>
             </a>
           </li>
           <li><a href="#design" data-toggle="tab"><i class="fas fa-tools"></i>
-              <h5>03. La réalisation</h5>
+              <h5 class="visible-xs">Etape 3</h5>
+              <h5 class="hidden-xs">03. La réalisation</h5>
             </a>
           </li>
           <li><a href="#development" data-toggle="tab"><i class="fa fa-taxi"></i>
-              <h5>04. La livraison</h5>
+              <h5 class="visible-xs">Etape 4</h5>
+              <h5 class="hidden-xs">04. La livraison</h5>
             </a>
           </li>
         </ul>
 
         <div class="tab-content">
           <div id="concept" class="tab-pane active">
-            <div class="col-md-5 process-img"> <img src="img/meet.jpeg" class="img-responsive img-round">
+            <div class="col-md-3 col-md-offset-2 process-img"> <img src="img/meet.jpeg"
+                   class="img-responsive img-round">
             </div>
-            <div class="col-md-7 process-content">
+            <div class="col-md-6 process-content">
               <h6>Echange autour du besoin</h6>
               <p>C'est lors de cet échange que je prends note de votre besoin, de vos envies et de votre budget</p>
             </div>
           </div>
           <div id="prototype" class="tab-pane">
-            <div class="col-md-5 process-img"> <img src="img/draw.jpeg" class="img-responsive img-round"> </div>
-            <div class="col-md-7 process-content">
+            <div class="col-md-3 col-md-offset-2 process-img"> <img src="img/draw.jpeg"
+                   class="img-responsive img-round">
+            </div>
+            <div class="col-md-6 process-content">
               <h6>L'esquisse</h6>
               <p>Après 8 à 15 jours je reviens vers vous pour vous proposer une esquisse pour votre projet et une
                 validation sur cette dernière</p>
             </div>
           </div>
           <div id="design" class="tab-pane">
-            <div class="col-md-5 process-img"> <img src="img/build.jpg" class="img-responsive img-round"> </div>
-            <div class="col-md-7 process-content">
+            <div class="col-md-3 col-md-offset-2 process-img"> <img src="img/build.jpg"
+                   class="img-responsive img-round"> </div>
+            <div class="col-md-6 process-content">
               <h6>La naissance de la création</h6>
               <p>Durant plusieurs semaines, votre pièce unique naîtra dans mon atelier à côté d'autres projets</p>
             </div>
           </div>
           <div id="development" class="tab-pane">
-            <div class="col-md-5 process-img"> <img src="img/delivery.jpeg" class="img-responsive img-round"> </div>
-            <div class="col-md-7 process-content">
+            <div class="col-md-3 col-md-offset-2 process-img"> <img src="img/delivery.jpeg"
+                   class="img-responsive img-round"> </div>
+            <div class="col-md-6 process-content">
               <h6>A emporter ou en livraison</h6>
               <p>Après l'avoir bichonnée et choyée pendant quelques semaines, votre pièce unique sera la plus belle à
                 vos yeux et vous pourrez soit venir la chercher dans mon atelier soit demander la livraison</p>
@@ -208,22 +220,22 @@
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12 wow fadeInDown">
-          <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="col-md-3 col-sm-6 col-xs-6">
             <div class="c-block"><i class="fa fa-user"></i><span class="counter">24</span>
               <p>Clients</p>
             </div>
           </div>
-          <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="col-md-3 col-sm-6 col-xs-6">
             <div class="c-block"><i class="fas fa-toolbox" aria-hidden="true"></i><span class="counter">53</span>
               <p>Projets</p>
             </div>
           </div>
-          <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="col-md-3 col-sm-6 col-xs-6">
             <div class="c-block"><i class="fa fa-clock"></i><span class="counter">5356</span>
               <p>Heures</p>
             </div>
           </div>
-          <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="col-md-3 col-sm-6 col-xs-6">
             <div class="c-block"><i class="fa fa-bullseye"></i><span class="counter">65</span>
               <p>Billes de bois</p>
             </div>
@@ -235,12 +247,15 @@
   <section id="testimonials-block" class="text-center">
     <div class="container">
       <div class="row">
+        <div class="section-title text-center wow fadeInUp">
+          <h2>Retours clients</h2>
+        </div>
         <div class="col-md-8 col-md-offset-2">
           <div id="testimonial" class="owl-carousel owl-theme">
             <div class="item"> <img src="img/full_img/08.jpg">
-              <h5>La création proposée par Steel de Bois a embélit mon salon et cette création est remarquée de tous mes
+              <h5>La création proposée par Steel de Bois a embelli mon salon et cette création est remarquée de tous mes
                 invités</h5>
-              <p><strong>Paul G.</strong></p>
+              <p><strong>Camille L.</strong></p>
             </div>
             <div class="item"> <img src="img/full_img/06.jpg">
               <h5>Steel de Bois m'a refait tous les meubles de mon salon de coiffure. Chaque pupitre est unique et
@@ -249,7 +264,7 @@
             </div>
             <div class="item"> <img src="img/full_img/03.jpg">
               <h5>Besoin d'une porte qui sorte de l'ordinaire, Steel de bois a parfaitement répondu à mes attentes</h5>
-              <p><strong>Rémi T.</strong></p>
+              <p><strong>Florent G.</strong></p>
             </div>
           </div>
         </div>
@@ -260,33 +275,32 @@
     <div class="container">
       <div class="row wow fadeInUp">
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <!--copyright-->
-          <p class="copyright">© 2020 <a href="https://www.steeldebois.com/">Steel de bois</a></p>
-          <!--/copyright-->
+          <ul class="social-link">
+            <li><a href="https://twitter.com/SteeldeBois"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.facebook.com/Steel-de-bois-603157150068626/?ref=page_internal&mt_nav=0"><i
+                   class="fab fa-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/steeldebois/?hl=fr"><i class="fab fa-instagram"></i></a></li>
+          </ul>
         </div>
         <!--bottom nav-->
         <div class="col-md-4 col-sm-4 col-xs-12">
           <nav class="bottom-nav">
-            <ul>
-              <li><a onclick="scroll_to_anchor('#home-banner')">Home</a></li>
+            <ul id="menu-footer">
+              <li><a onclick="scroll_to_anchor('#home-banner')">Accueil</a></li>
               <li><a onclick="scroll_to_anchor('#our-work-block')">Mes Créations</a></li>
               <li><a href="mailto:atelier@steeldebois.com">Contact</a></li>
             </ul>
           </nav>
         </div>
-        <!--/bottom nav-->
-
-        <!--Social Links-->
         <div class="col-md-4 col-sm-4 col-xs-12">
-          <ul class="social-link">
-            <li><a href="https://twitter.com/SteeldeBois"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://b-m.facebook.com/Steel-de-bois-603157150068626/?ref=page_internal&mt_nav=0"><i
-                   class="fab fa-facebook"></i></a></li>
-            <li><a href="https://www.instagram.com/steeldebois/?hl=fr"><i class="fab fa-instagram"></i></a></li>
-          </ul>
+          <p class="address">atelier@steeldebois.com</p>
+          <p class="address">49071 Chemillé en Anjou</p>
         </div>
-        <!--/Social Links-->
-
+      </div>
+      <div class="row wow fadeInUp">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <p class="copyright">© 2020 <a href="https://www.steeldebois.com/">Steel de bois</a></p>
+        </div>
       </div>
     </div>
   </footer>

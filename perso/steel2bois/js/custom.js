@@ -38,7 +38,14 @@
 
 function scroll_to_anchor(anchor_id){
   var tag = $(anchor_id);
-    $('html,body').animate({scrollTop: tag.offset().top},'slow');
+  $('html,body').animate({scrollTop: tag.offset().top},'slow');
+  if(window.screen.width<=603){
+    $('#top-menu button').addClass('collapsed');
+    $('#bs-example-navbar-collapse-1').removeClass('in');
+    $('#top-menu button').attr('aria-expanded', function (i, attr) {
+        return attr == 'true' ? 'false' : 'true'
+    });
+  }
 }
 jQuery(function($) {
   (function() {

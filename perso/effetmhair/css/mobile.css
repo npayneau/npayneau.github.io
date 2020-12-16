@@ -1,0 +1,15 @@
+.intro h1 {
+    font-size: 3em;
+}
+
+#about .section-title {
+    margin-bottom: 0;
+}
+
+#hair-price .section-title {
+    margin-bottom: 1em;
+}
+
+.owl-nav {
+    display: none;
+}

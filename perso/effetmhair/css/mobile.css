@@ -6,6 +6,10 @@
     font-size: 1em;
 }
 
+.intro .btn-custom {
+    font-size: 0.8em;
+}
+
 #about .section-title {
     margin-bottom: 0;
 }
@@ -16,4 +20,12 @@
 
 .owl-nav {
     display: none;
+}
+
+#about .about-text {
+    margin-left: 0;
+}
+
+#about .about-img {
+    margin-bottom: 1em;
 }

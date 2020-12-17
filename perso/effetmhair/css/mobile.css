@@ -6,6 +6,10 @@
     font-size: 1em;
 }
 
+.intro .btn-custom {
+    font-size: 0.8em;
+}
+
 #about .section-title {
     margin-bottom: 0;
 }

@@ -262,7 +262,7 @@ a:focus,
 
 .intro p {
     color: #fff;
-    font-size: 32px;
+    font-size: 2em;
     font-weight: 300;
     margin-top: 10px;
     margin-bottom: 40px;
@@ -272,6 +272,10 @@ header .intro-text {
     padding-top: 250px;
     padding-bottom: 200px;
     text-align: center;
+}
+
+header .intro-text .btn {
+    border-radius: 1em;
 }
 
 /* About Section */

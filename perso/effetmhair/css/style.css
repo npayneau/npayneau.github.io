@@ -726,7 +726,7 @@ label {
 }
 
 #footer a:hover {
-    color: #333;
+    color: var(--main-color);
 }
 
 #footer .copyright p {

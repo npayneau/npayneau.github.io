@@ -713,7 +713,7 @@ label {
 }
 
 #footer .social i.fa:hover {
-    color: #eee;
+    color: var(--main-color);
 }
 
 #footer p {
